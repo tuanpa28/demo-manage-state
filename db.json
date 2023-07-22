@@ -1,0 +1,16 @@
+{
+  "cars": [
+    {
+      "name": "VinFast",
+      "id": 2
+    },
+    {
+      "name": "Lau nhà",
+      "id": 5
+    },
+    {
+      "name": "Quét nhà",
+      "id": 6
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+export const FETCH_PENDING = "FETCH_PENDING";
+export const FETCH_FULFILLED = "FETCH_FULFILLED";
+export const FETCH_REJECTED = "FETCH_REJECTED";
+export const DELETE_CAR = "DELETE_CAR";
+export const SET_ISLOADING = "SET_ISLOADING";
