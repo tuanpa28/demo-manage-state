@@ -1,8 +1,7 @@
 import { Button } from "@/components";
-import { ICar } from "@/interfaces/Car";
 
 type ItemProps = {
-  car: ICar;
+  car?: any;
   onRemoveCar: (id: number) => void;
 };
 
