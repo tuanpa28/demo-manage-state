@@ -1,6 +1,6 @@
+import productApi, { productReducer } from "@/api/product";
 import { cartReducer } from "@/slices/cartSlice";
 import { counterReducer } from "@/slices/counterSlice";
-import { productReducer } from "@/slices/productSlice";
 import {
   configureStore,
   ThunkAction,
@@ -26,7 +26,7 @@ const persistConfig = {
 };
 
 const rootReducer = combineReducers({
-  products: productReducer,
+  [productApi.reducerPath]: productReducer,
   counter: counterReducer,
   cart: cartReducer,
 });
@@ -40,7 +40,7 @@ export const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }),
+    }).concat(productApi.middleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;
