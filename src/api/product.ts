@@ -1,4 +1,3 @@
-import { pause } from "@/utils/pause";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 interface IProduct {
@@ -8,20 +7,24 @@ interface IProduct {
 }
 
 const productApi = createApi({
-  reducerPath: "products",
+  reducerPath: "product",
+  tagTypes: ["Product"],
   baseQuery: fetchBaseQuery({
     baseUrl: "http://localhost:3000",
-    fetchFn: async (...args) => {
-      await pause(1000);
-      return fetch(...args);
+    // Set token vào header
+    prepareHeaders: (headers) => {
+      const token = localStorage.getItem("token");
+      if (token) {
+        headers.set("Authorization", "Bearer xxx");
+      }
+      return headers;
     },
   }),
   endpoints(builder) {
     return {
       getProducts: builder.query<IProduct[], void>({
-        query: () => {
-          return { url: "/products", method: "GET" };
-        },
+        query: () => "/products",
+        providesTags: ["Product"],
       }),
       addProduct: builder.mutation<IProduct, Partial<IProduct>>({
         query: (product) => {
@@ -31,6 +34,7 @@ const productApi = createApi({
             body: product,
           };
         },
+        invalidatesTags: ["Product"],
       }),
       updateProduct: builder.mutation<IProduct, Partial<IProduct>>({
         query: (product) => {
@@ -40,6 +44,7 @@ const productApi = createApi({
             body: product,
           };
         },
+        invalidatesTags: ["Product"],
       }),
       removeProduct: builder.mutation<void, number>({
         query: (id) => {
@@ -48,6 +53,7 @@ const productApi = createApi({
             method: "DELETE",
           };
         },
+        invalidatesTags: ["Product"],
       }),
     };
   },

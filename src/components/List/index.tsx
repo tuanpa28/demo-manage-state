@@ -1,6 +1,5 @@
 import { Item } from "@/components";
 import { useEffect } from "react";
-import { instance } from "@/axios/config";
 import Skeleton from "react-loading-skeleton";
 
 const List = () => {
@@ -9,7 +8,7 @@ const List = () => {
       try {
         // dispatch(apiPending(true));
 
-        const { data } = await instance.get("cars");
+        // const { data } = await instance.get("cars");
         setTimeout(() => {
           // dispatch(apiFulfilled(data));
         }, 1000);
@@ -23,7 +22,7 @@ const List = () => {
 
   const handleRemoveCar = async (id: number) => {
     try {
-      await instance.delete(`cars/${id}`);
+      // await instance.delete(`cars/${id}`);
       // dispatch(deleteCar(id));
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {

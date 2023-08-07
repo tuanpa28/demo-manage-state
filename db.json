@@ -10,11 +10,6 @@
       "id": 2,
       "name": "product B",
       "price": 200
-    },
-    {
-      "name": "Product C",
-      "price": 300,
-      "id": 3
     }
   ]
 }
